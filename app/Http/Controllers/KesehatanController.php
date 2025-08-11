@@ -138,29 +138,6 @@ class KesehatanController extends Controller
         ],
     ];
 }
-
-    public function kirimHasil(Request $request)
-{
-    $request->validate([
-        'nama' => 'required',
-        'berat' => 'required|numeric',
-        'tinggi' => 'required|numeric',
-        'email' => 'required|email',
-        'bmi' => 'required',
-        'kategori' => 'required',
-        'protein' => 'required',
-    ]);
-
-    Mail::to($request->email)->send(new BmiHasilEmail(
-        $request->nama,
-        $request->bmi,
-        $request->kategori,
-        $request->berat,
-        $request->tinggi
-    ));
-
-    return response('OK', 200); // Tidak redirect
 }
 
 
-}
